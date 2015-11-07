@@ -10,8 +10,8 @@ p　{
 }
 
 div {
-   padding: 10px;
-   margin-bottom: 10px;
+   padding: 0px;
+   /* margin-bottom: 10px; */
    border: 5px;
    color: #69D2E7;
 }
@@ -23,4 +23,14 @@ div {
 
 .left {
   border-right: 1px solid #333;
+}
+
+#pbut {
+  margin: 35px;
+}
+
+#logo {
+  height: auto;
+  width: auto;
+  max-height: 200px;
 }

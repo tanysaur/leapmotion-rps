@@ -22,11 +22,11 @@ controller.connect();
 
 socket.on('countdown', function(data) {
   document.getElementById('output').innerHTML = "Another player has connected. READY YOURSELF"
-  setTimeout(function() { document.getElementById('output').innerHTML = "Rock..." }, 750);
-  setTimeout(function() { document.getElementById('output').innerHTML = "Paper..." }, 1500);
-  setTimeout(function() { document.getElementById('output').innerHTML = "Scissors..." }, 2250);
-  setTimeout(function() { document.getElementById('output').innerHTML = 'Shoot!' }, 3000);
-  setTimeout(collectData, 3250);
+  setTimeout(function() { document.getElementById('output').innerHTML = "Rock..." }, 1500);
+  setTimeout(function() { document.getElementById('output').innerHTML = "Paper..." }, 2250);
+  setTimeout(function() { document.getElementById('output').innerHTML = "Scissors..." }, 3000);
+  setTimeout(function() { document.getElementById('output').innerHTML = 'Shoot!' }, 3750);
+  setTimeout(collectData, 4000);
 });
 
 function collectData() {
