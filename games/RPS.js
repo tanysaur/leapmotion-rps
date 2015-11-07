@@ -3,8 +3,8 @@ var Game = function(player1, player2) {
   this.player2 = player2;
   this.onSubmit(this.player1, this.player2);
   this.onSubmit(this.player2, this.player1);
-  this.sendCountdown(player1, 3);
-  this.sendCountdown(player2, 3);
+  this.player1.emit('countdown', {});
+  this.player2.emit('countdown', {});
 };
 
 Game.prototype.sendCountdown = function(player, count) {
