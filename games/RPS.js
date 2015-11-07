@@ -21,7 +21,32 @@ Game.prototype.onSubmit = function(player, opponent){
 
 Game.prototype.getResults = function(player, opponent){
   if(opponent.move){
-    
+    if (player.move == 'rock') {
+      if (opponent.move == 'scissors') {
+        // player wins
+      } else if (opponent.move == 'paper') {
+        // opponent wins
+      } else {
+        // tie
+      }
+    } else if (player.move == 'scissors') {
+      if (opponent.move == 'rock') {
+        // opponent wins
+      } else if (opponent.move == 'paper') {
+        // player wins
+      } else {
+        // tie
+      }
+    }
+    else {  // player threw paper
+      if (opponent.move == 'scissors') {
+        // opponent wins
+      } else if (opponent.move == 'rock') {
+        // player wins
+      } else {
+        // tie
+      }
+    }
   }
 };
 
