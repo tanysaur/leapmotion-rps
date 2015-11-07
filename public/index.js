@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-var socket = io.connect('http://localhost:3000');
-=======
-
 var socket = io.connect(location.host);
->>>>>>> works on deployed server
 
 var controller = new Leap.Controller({enableGestures: true});
 var choice = "";
