@@ -24,37 +24,46 @@ Game.prototype.getResults = function(player, opponent){
     if (player.move == 'rock') {
       if (opponent.move == 'scissors') {
         // player wins
+        this.sendResults(player, opponent, 'playerWon');
       } else if (opponent.move == 'paper') {
         // opponent wins
+        this.sendResults(player, opponent, 'playerLost');
       } else {
         // tie
+        this.sendResults(player, opponent, 'tie');
       }
     } else if (player.move == 'scissors') {
       if (opponent.move == 'rock') {
         // opponent wins
+        this.sendResults(player, opponent, 'playerLost');
       } else if (opponent.move == 'paper') {
         // player wins
+        this.sendResults(player, opponent, 'playerWon');
       } else {
         // tie
+        this.sendResults(player, opponent, 'tie');
       }
     }
     else {  // player threw paper
       if (opponent.move == 'scissors') {
         // opponent wins
+        this.sendResults(player, opponent, 'playerLost');
       } else if (opponent.move == 'rock') {
         // player wins
+        this.sendResults(player, opponent, 'playerWon');
       } else {
         // tie
+        this.sendResults(player, opponent, 'tie');
       }
     }
   }
 };
 
 Game.prototype.sendResults = function(player, opponent, result) {
-  if (result == 0) {
+  if (result == 'playerWon') {
     player.emit('result', {result: 'winner'} );
     opponent.emit('result', {result: 'loser'} );
-  } else if (result == 1) {
+  } else if (result == 'playerLost') {
     player.emit('result', { result: 'loser' } );
     opponent.emit('result', { result: 'winner' } );
   } else {
