@@ -31,6 +31,7 @@ socket.on('countdown', function(data) {
 function collectData() {
   console.log("Collected data");
   socket.emit('submit', {move: choice || 'rock'});
+  controller.disconnect();
 };
 
 function setChoicePic() {
