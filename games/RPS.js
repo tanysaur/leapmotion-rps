@@ -61,14 +61,14 @@ Game.prototype.getResults = function(player, opponent){
 
 Game.prototype.sendResults = function(player, opponent, result) {
   if (result == 'playerWon') {
-    player.emit('result', {result: 'winner'} );
-    opponent.emit('result', {result: 'loser'} );
+    player.emit('result', {result: 'You won!', player: player.move, opponent: opponent.move} );
+    opponent.emit('result', {result: 'You lost!', player: opponent.move, opponent: player.move } );
   } else if (result == 'playerLost') {
-    player.emit('result', { result: 'loser' } );
-    opponent.emit('result', { result: 'winner' } );
+    player.emit('result', { result: 'You lost!', player: player.move, opponent: opponent.move } );
+    opponent.emit('result', { result: 'You won!', player: opponent.move, opponent: player.move } );
   } else {
-    player.emit('result', { result: 'tie' } );
-    opponent.emit('result', { result: 'tie' } );
+    player.emit('result', { result: 'You tied!', player: player.move, opponent: opponent.move } );
+    opponent.emit('result', { result: 'You tied!', player: opponent.move, opponent: player.move } );
   }
 }
 

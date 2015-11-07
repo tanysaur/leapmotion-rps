@@ -25,10 +25,11 @@ socket.on('countdown', function(data) {
   setTimeout(function() { document.getElementById('output').innerHTML = 2 }, 2000);
   setTimeout(function() { document.getElementById('output').innerHTML = 1 }, 3000);
   setTimeout(function() { document.getElementById('output').innerHTML = 'GO' }, 4000);
-  setTimeout(collectData(), 4000);
+  setTimeout(collectData, 4000);
 });
 
 function collectData() {
+  console.log("Collected data");
   socket.emit('submit', {move: choice || 'rock'});
 };
 
@@ -36,9 +37,15 @@ function setChoicePic() {
   document.getElementById('player-pic').src = "assets/" + choice + '.png';
 }
 
+function setOpponentPic(pic) {
+  document.getElementById('opponent-pic').src = "assets/" + pic + '.png';
+}
+
 socket.on('result', function(data){
   console.log(data);
+  console.log(data.result);
   document.getElementById('output').innerHTML = data.result;
+  setOpponentPic(data.opponent);
   socket.disconnect();
 });
 
