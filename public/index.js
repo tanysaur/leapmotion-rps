@@ -2,3 +2,17 @@
 var socket = io.connect('http://localhost:3000');
 
 console.log('Index.js called');
+
+io.on('countdown', function(data) {
+  for (val i = data.count; i >= 0; i--) {
+    setTimeout(function() {
+      document.getElementById('not-sure-yet').innerHTML = i;
+    }, 1000);
+  }
+  // collectData();
+  console.log("Countdown achieved");
+});
+
+function collectData() {
+  
+}
