@@ -14,5 +14,9 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/justinkennedy10/leapmotion-rps/issues"
+  },
+  "dependencies": {
+    "express": "~4.13.3",
+    "socket.io": "~1.3.7"
   }
 }
