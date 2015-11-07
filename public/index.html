@@ -1,43 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <body><body bgcolor="#E0FFFF">
   <title>RPS N Chill</title>
   <link rel="stylesheet" tyoe="text/css" href="index.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <script src="https://js.leapmotion.com/leap-0.6.4.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script src="index.js"></script>
 </head>
-<br>
-<br>
-<div style="padding: 10px; margin-bottom: 10px; border: 5px double #69D2E7;">
-  <h1><font color="FA6900">Rock Paper Scissors and Chill </font></h1>
-  <br>
-  <br>
-  <p>
-    Hello world! Welcome to the maze of Rock Paer Scissors!<br>
-    <br>
-    Need some <font color="F38630">reflesh</font>? Need <font color="F38630">exercise </font>for your hand?<br>
-    Then you are at right place!</font></p>
-  </p>
-  <br>
-  <br>
 
-  <p id="count-box">
-</p>
+<body>
+  <div class="container" id='header'>
+    <div class="jumbotron">
+      <h1>Rock Paper Scissors and Chill</h1>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-sm-2'>
+    </div>
 
-  <p id="count-box">count</p>
+    <div id='player' class='col-sm-3'>
+      <p>
+      </p>
+      <p id="count-box">
+      </p>
+      <p> Player Screen </p>
+      <div>
+      </div>
+      <br>
+      <br>
+      <p id="player-choice">
+      </p>
+    </div>
 
-<br>
-<br>
-<div>
-</div>
-<br>
-<br>
-<p id="player-choice">
-</p>
+    <div class='col-sm-2'>
+    </div>
 
+    <div id='opponent' class='col-sm-3'>
+      <p> Opponent Screen </p>
+    </div>
 
+    <div class='col-sm-2'>
+    </div>
+  </div>
+  <div id='play-button'>
+    <button class="btn btn-primary btn-lg" > Play Game! </button>
+  </div>
 </body>
-</div>
 </html>
