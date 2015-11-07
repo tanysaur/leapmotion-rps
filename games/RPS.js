@@ -3,8 +3,8 @@ var Game = function(player1, player2) {
   this.player2 = player2;
   this.onSubmit(this.player1, this.player2);
   this.onSubmit(this.player2, this.player1);
-  this.sendCountdown(player1, 3);
-  this.sendCountdown(player2, 3);
+  this.player1.emit('countdown', {});
+  this.player2.emit('countdown', {});
 };
 
 Game.prototype.sendCountdown = function(player, count) {
@@ -15,46 +15,46 @@ Game.prototype.onSubmit = function(player, opponent){
   var self = this;
   player.on('submit', function(data) {
     player.move = data.move;
-    self.getResults(player, opponent);
+    if (opponent.move) {
+      self.getResults(player, opponent);
+    }
   });
 };
 
 Game.prototype.getResults = function(player, opponent){
-  if(opponent.move){
-    if (player.move == 'rock') {
-      if (opponent.move == 'scissors') {
-        // player wins
-        this.sendResults(player, opponent, 'playerWon');
-      } else if (opponent.move == 'paper') {
-        // opponent wins
-        this.sendResults(player, opponent, 'playerLost');
-      } else {
-        // tie
-        this.sendResults(player, opponent, 'tie');
-      }
-    } else if (player.move == 'scissors') {
-      if (opponent.move == 'rock') {
-        // opponent wins
-        this.sendResults(player, opponent, 'playerLost');
-      } else if (opponent.move == 'paper') {
-        // player wins
-        this.sendResults(player, opponent, 'playerWon');
-      } else {
-        // tie
-        this.sendResults(player, opponent, 'tie');
-      }
+  if (player.move == 'rock') {
+    if (opponent.move == 'scissors') {
+      // player wins
+      this.sendResults(player, opponent, 'playerWon');
+    } else if (opponent.move == 'paper') {
+      // opponent wins
+      this.sendResults(player, opponent, 'playerLost');
+    } else {
+      // tie
+      this.sendResults(player, opponent, 'tie');
     }
-    else {  // player threw paper
-      if (opponent.move == 'scissors') {
-        // opponent wins
-        this.sendResults(player, opponent, 'playerLost');
-      } else if (opponent.move == 'rock') {
-        // player wins
-        this.sendResults(player, opponent, 'playerWon');
-      } else {
-        // tie
-        this.sendResults(player, opponent, 'tie');
-      }
+  } else if (player.move == 'scissors') {
+    if (opponent.move == 'rock') {
+      // opponent wins
+      this.sendResults(player, opponent, 'playerLost');
+    } else if (opponent.move == 'paper') {
+      // player wins
+      this.sendResults(player, opponent, 'playerWon');
+    } else {
+      // tie
+      this.sendResults(player, opponent, 'tie');
+    }
+  }
+  else {  // player threw paper
+    if (opponent.move == 'scissors') {
+      // opponent wins
+      this.sendResults(player, opponent, 'playerLost');
+    } else if (opponent.move == 'rock') {
+      // player wins
+      this.sendResults(player, opponent, 'playerWon');
+    } else {
+      // tie
+      this.sendResults(player, opponent, 'tie');
     }
   }
 };
