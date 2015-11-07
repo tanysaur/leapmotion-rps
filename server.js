@@ -11,4 +11,16 @@ var lobby = [];
 
 io.on('connection', function (socket) {
   console.log("socket connected" + socket);
+  if (lobby.length == 0) {
+    lobby.push(socket);
+  } else {
+    //create new game
+  }
+
+  socket.on('disconnect', function () {
+    var index = lobby.indexOf(socket);
+    if (index > -1) {
+      lobby.splice(index, 1);
+    }
+  });
 });
