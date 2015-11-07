@@ -1,6 +1,6 @@
 var socket = io.connect(location.host);
 
-var choice = "";
+var choice = "questionmark";
 
 var controller = new Leap.Controller({enableGestures: true});
 controller.on('deviceFrame', function(frame) {
@@ -16,6 +16,7 @@ controller.on('deviceFrame', function(frame) {
       choice = "paper";
     }
   }
+  setChoicePic();
 });
 controller.connect();
 
@@ -30,6 +31,10 @@ socket.on('countdown', function(data) {
 function collectData() {
   socket.emit('submit', {move: choice || 'rock'});
 };
+
+function setChoicePic() {
+  document.getElementById('player-pic').src = "assets/" + choice + '.png';
+}
 
 socket.on('result', function(data){
   console.log(data);
