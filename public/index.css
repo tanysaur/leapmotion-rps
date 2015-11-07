@@ -1,7 +1,7 @@
 
 h1 {
   /* font-family: Comic Sans MS; */
-  /*color: #F38630;
+  color: #F38630;
 }
 
 p　{
@@ -19,4 +19,8 @@ div {
 #play-button {
   width: 10%;
   margin: 0 auto;
+}
+
+.left {
+  border-right: 1px solid #333;
 }
