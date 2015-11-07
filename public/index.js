@@ -1,7 +1,8 @@
 var socket = io.connect(location.host);
 
-var controller = new Leap.Controller({enableGestures: true});
 var choice = "";
+
+var controller = new Leap.Controller({enableGestures: true});
 controller.on('deviceFrame', function(frame) {
   for (var i = 0; i < frame.hands.length; i++) {
     var hand = frame.hands[i];
@@ -14,10 +15,8 @@ controller.on('deviceFrame', function(frame) {
             && hand.middleFinger.extended && hand.ringFinger.extended && hand.pinky.extended) {
       choice = "paper";
     }
-    document.getElementById('player-choice').innerHTML = choice;
   }
 });
-
 controller.connect();
 
 socket.on('countdown', function(data) {
@@ -29,8 +28,8 @@ socket.on('countdown', function(data) {
 });
 
 function collectData() {
-  socket.emit('submit', {move: 'rock'});
-}
+  socket.emit('submit', {move: choice || 'rock'});
+};
 
 socket.on('result', function(data){
   document.getElementById('output').innerHTML = data.result;
