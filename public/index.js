@@ -32,6 +32,7 @@ function collectData() {
 };
 
 socket.on('result', function(data){
+  console.log(data);
   document.getElementById('output').innerHTML = data.result;
   socket.disconnect();
 });
