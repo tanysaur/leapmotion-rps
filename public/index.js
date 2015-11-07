@@ -21,18 +21,11 @@ controller.on('deviceFrame', function(frame) {
 controller.connect();
 
 socket.on('countdown', function(data) {
-  setTimeout(function() { document.getElementById('count-box').innerHTML = 3 }, 1000);
-  setTimeout(function() { document.getElementById('count-box').innerHTML = 2 }, 2000);
-  setTimeout(function() { document.getElementById('count-box').innerHTML = 1 }, 3000);
-  setTimeout(function() { document.getElementById('count-box').innerHTML = 'GO' }, 4000);
+  setTimeout(function() { document.getElementById('output').innerHTML = 3 }, 1000);
+  setTimeout(function() { document.getElementById('output').innerHTML = 2 }, 2000);
+  setTimeout(function() { document.getElementById('output').innerHTML = 1 }, 3000);
+  setTimeout(function() { document.getElementById('output').innerHTML = 'GO' }, 4000);
   setTimeout(collectData(), 4000);
-
-  // for (var i = 1; i <= 4; i++) {
-  //   setTimeout(function(i) {
-  //     document.getElementById('count-box').innerHTML = 4 - i
-  //   }, i * 1000)
-  // }
-  // setTimeout(collectData(), 5000);
 });
 
 function collectData() {
@@ -40,13 +33,10 @@ function collectData() {
 }
 
 socket.on('result', function(data){
-  console.log(data.result);
+  document.getElementById('output').innerHTML = data.result;
   socket.disconnect();
-  console.log(socket);
 });
 
 function reconnect(){
   socket.socket.connect()
 };
-
-console.log('Index.js called');
