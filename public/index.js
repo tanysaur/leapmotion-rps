@@ -21,3 +21,13 @@ socket.on('countdown', function(data) {
 function collectData() {
   socket.emit('submit', {move: 'rock'});
 }
+
+socket.on('result', function(data){
+  console.log(data.result);
+  socket.disconnect();
+  console.log(socket);
+});
+
+function reconnect(){
+  socket.socket.connect()
+};
