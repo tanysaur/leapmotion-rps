@@ -13,7 +13,7 @@ Game.prototype.sendCountdown = function(player, count) {
 
 Game.prototype.onSubmit = function(player, opponent){
   var self = this;
-  player.on('submit', function(data){
+  player.on('submit', function(data) {
     player.move = data.move;
     self.getResults(player, opponent);
   });
@@ -49,5 +49,18 @@ Game.prototype.getResults = function(player, opponent){
     }
   }
 };
+
+Game.prototype.sendResults = function(player, opponent, result) {
+  if (result == 0) {
+    player.emit('result', {result: 'winner'} );
+    opponent.emit('result', {result: 'loser'} );
+  } else if (result == 1) {
+    player.emit('result', { result: 'loser' } );
+    opponent.emit('result', { result: 'winner' } );
+  } else {
+    player.emit('result', { result: 'tie' } );
+    opponent.emit('result', { result: 'tie' } );
+  }
+}
 
 module.exports = Game;
