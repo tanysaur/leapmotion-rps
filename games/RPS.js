@@ -85,6 +85,14 @@ Game.prototype.sendResults = function(player, opponent, result) {
   } else {
     console.log("error");
   }
-}
+};
+
+Game.prototype.alertDisconnect = function(player) {
+  if (player == this.player1) {
+    this.player2.emit('dropped', {msg: 'Opponent disconnected.' } );
+  } else {
+    this.player1.emit('dropped', {msg: 'Opponent disconnected.' } );
+  }
+};
 
 module.exports = Game;

@@ -1,6 +1,7 @@
 var socket = io.connect(location.host);
 
 var choice = "questionmark";
+var dropped = false;
 
 var controller = new Leap.Controller({enableGestures: true});
 controller.on('deviceFrame', function(frame) {
@@ -30,9 +31,14 @@ socket.on('countdown', function(data) {
 });
 
 function collectData() {
-  console.log("Collected data");
-  socket.emit('submit', {move: choice || 'rock'});
-  controller.disconnect();
+  if (!dropped) {
+    socket.emit('submit', {move: choice || 'rock'});
+    controller.disconnect();
+  } else {
+    document.getElementById('output').innerHTML = "Lost connection to opponent."
+    dropped = false;
+    socket.disconnect();
+  }
 };
 
 function setChoicePic() {
@@ -43,7 +49,7 @@ function setOpponentPic(pic) {
   document.getElementById('opponent-pic').src = "assets/" + pic + '.png';
 }
 
-socket.on('result', function(data){
+socket.on('result', function(data) {
   console.log(data);
   console.log(data.result);
   document.getElementById('output').innerHTML = data.result;
@@ -51,6 +57,10 @@ socket.on('result', function(data){
   socket.disconnect();
 });
 
+socket.on('dropped', function(data) {
+  console.log("Dropped received");
+  dropped = true;   // Signifies connection was lost with opponent
+});
 function reconnect(){
   socket.connect();
   controller.connect();
