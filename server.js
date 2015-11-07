@@ -7,9 +7,8 @@ server.listen(3000);
 
 app.use(express.static('public'));
 
-// io.on('connection', function (socket) {
-//   socket.emit('news', { hello: 'world' });
-//   socket.on('my other event', function (data) {
-//     console.log(data);
-//   });
-// });
+var lobby = [];
+
+io.on('connection', function (socket) {
+  console.log("socket connected" + socket);
+});
