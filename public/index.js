@@ -52,5 +52,11 @@ socket.on('result', function(data){
 });
 
 function reconnect(){
-  socket.socket.connect()
+  socket.connect();
+  controller.connect();
+  choice = "questionmark";
+  setChoicePic();
+  setOpponentPic("questionmark");
+  document.getElementById('output').innerHTML = "Waiting for another user..."
+
 };
