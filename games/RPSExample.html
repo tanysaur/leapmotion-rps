@@ -64,9 +64,10 @@
 
 		  if (hand.grabStrength > 0.6) {
 			  rps = "ROCK HARD";
-		  } else if (hand.grabStrength == 0.0 && !hand.ringFinger.extended && !hand.pinky.extended) {
-			  rps = "ScIsSoRs";
-		  } else if (hand.grabStrength < 0.4 && hand.thumb.extended && hand.indexFinger.extended && hand.middleFinger.extended) {
+		  } else if (hand.grabStrength < 0.3 && !hand.ringFinger.extended && !hand.pinky.extended) {
+			  rps = "ScIs SoRs";
+		  } else if (hand.grabStrength < 0.4 && hand.thumb.extended && hand.indexFinger.extended
+              && hand.middleFinger.extended && hand.ringFinger.extended && hand.pinky.extended) {
 			  rps = "paper soft";
 		  }
 

@@ -1,7 +1,24 @@
-
 var socket = io.connect('http://localhost:3000');
 
-console.log('Index.js called');
+var controller = new Leap.Controller({enableGestures: true});
+var choice = "";
+controller.on('deviceFrame', function(frame) {
+  for (var i = 0; i < frame.hands.length; i++) {
+    var hand = frame.hands[i];
+
+    if (hand.grabStrength > 0.6) {
+      choice = "rock";
+    } else if (hand.grabStrength < 0.3 && !hand.ringFinger.extended && !hand.pinky.extended) {
+      choice = "scissors";
+    } else if (hand.grabStrength < 0.4 && hand.thumb.extended && hand.indexFinger.extended
+            && hand.middleFinger.extended && hand.ringFinger.extended && hand.pinky.extended) {
+      choice = "paper";
+    }
+    document.getElementById('player-choice').innerHTML = choice;
+  }
+});
+
+controller.connect();
 
 socket.on('countdown', function(data) {
   setTimeout(function() { document.getElementById('count-box').innerHTML = 3 }, 1000);
@@ -31,3 +48,5 @@ socket.on('result', function(data){
 function reconnect(){
   socket.socket.connect()
 };
+
+console.log('Index.js called');
