@@ -18,27 +18,28 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row" id="waiting">
     <div class="page-header text-center">
-      <h1 id="output">Waiting for another user...</h1>
+      <h1 id="output" style="color:#69D2E7">Waiting for another user...</h1>
     </div>
   </div>
 
   <div class="row">
     <div class="col-sm-6 text-center left">
-      <p> Your weapon of choice... </p>
+      <p style="color: #FA6900"> Your weapon of choice... </p>
       <img id="player-pic" src="assets/questionmark.png" class="img-rounded" alt="PLAYER PICTURE" width="300" height="300">
     </div>
     <div class="col-sm-6 text-center">
-      <p> Your opponent's weapon of choice... </p>
+      <p style="color: #FA6900"> Your opponent's weapon of choice... </p>
       <img id="opponent-pic" src="assets/questionmark.png" class="img-rounded" alt="OPPONENT PICTURE" width="300" height="300">
     </div>
   </div>
 
   <div class="row" id='pbut'>
     <div class="col-sm-offset-5 col-sm-2">
-      <button id="play-button "type="button" class="btn btn-default btn-lg btn-block" onclick="reconnect()">Play Game!</button>
+      <button id="play-button "type="button" class="btn btn-info btn-lg btn-block" onclick="reconnect()">Play Game!</button>
     </div>
   </div>
+
 </body>
 </html>

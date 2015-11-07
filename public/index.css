@@ -1,19 +1,7 @@
-
-h1 {
-  /* font-family: Comic Sans MS; */
-  color: #F38630;
-}
-
-p　{
-  /* font-family: arial; */
-  font-size: 10px;
-}
-
 div {
    padding: 0px;
    /* margin-bottom: 10px; */
    border: 5px;
-   color: #69D2E7;
 }
 
 #play-button {
