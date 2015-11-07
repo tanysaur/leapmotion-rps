@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
+var Game = require('./games/RPS')
 
 server.listen(3000);
 
@@ -14,7 +15,7 @@ io.on('connection', function (socket) {
   if (lobby.length == 0) {
     lobby.push(socket);
   } else {
-    //create new game
+    new Game(lobby.shift(), socket);
   }
 
   socket.on('disconnect', function () {
