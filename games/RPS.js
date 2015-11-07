@@ -29,9 +29,12 @@ Game.prototype.getResults = function(player, opponent){
     } else if (opponent.move == 'paper') {
       // opponent wins
       this.sendResults(player, opponent, 'playerLost');
-    } else {
+    } else if (opponent.move == 'rock') {
       // tie
       this.sendResults(player, opponent, 'tie');
+    } else {
+      // questionmark
+      this.sendResults(player, opponent, 'invalid');
     }
   } else if (player.move == 'scissors') {
     if (opponent.move == 'rock') {
@@ -40,22 +43,29 @@ Game.prototype.getResults = function(player, opponent){
     } else if (opponent.move == 'paper') {
       // player wins
       this.sendResults(player, opponent, 'playerWon');
-    } else {
+    } else if (opponent.move == 'scissors') {
       // tie
       this.sendResults(player, opponent, 'tie');
+    } else {
+      // questionmark
+      this.sendResults(player, opponent, 'invalid');
     }
-  }
-  else {  // player threw paper
-    if (opponent.move == 'scissors') {
-      // opponent wins
-      this.sendResults(player, opponent, 'playerLost');
-    } else if (opponent.move == 'rock') {
+  } else if (player.move == 'paper') {
+    if (opponent.move == 'rock') {
       // player wins
       this.sendResults(player, opponent, 'playerWon');
-    } else {
+    } else if (opponent.move == 'scissors') {
+      // opponent wins
+      this.sendResults(player, opponent, 'playerLost');
+    } else if (opponent.move == 'paper') {
       // tie
       this.sendResults(player, opponent, 'tie');
+    } else {
+      // questionmark
+      this.sendResults(player, opponent, 'invalid');
     }
+  } else {
+      this.sendResults(player, opponent, 'invalid');
   }
 };
 
@@ -66,9 +76,14 @@ Game.prototype.sendResults = function(player, opponent, result) {
   } else if (result == 'playerLost') {
     player.emit('result', { result: 'You lost!', player: player.move, opponent: opponent.move } );
     opponent.emit('result', { result: 'You won!', player: opponent.move, opponent: player.move } );
-  } else {
+  } else if (result == 'tie') {
     player.emit('result', { result: 'You tied!', player: player.move, opponent: opponent.move } );
     opponent.emit('result', { result: 'You tied!', player: opponent.move, opponent: player.move } );
+  } else if (result == 'invalid'){
+    player.emit('result', { result: 'Invalid move. No contest.', player: player.move, opponent: opponent.move } );
+    opponent.emit('result', { result: 'Invalid move. No contest.', player: opponent.move, opponent: player.move } );
+  } else {
+    console.log("error");
   }
 }
 

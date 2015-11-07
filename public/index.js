@@ -58,5 +58,4 @@ function reconnect(){
   setChoicePic();
   setOpponentPic("questionmark");
   document.getElementById('output').innerHTML = "Waiting for another user..."
-
 };
