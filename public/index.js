@@ -6,7 +6,7 @@ console.log('Index.js called');
 io.on('countdown', function(data) {
   for (val i = data.count; i >= 0; i--) {
     setTimeout(function() {
-      document.getElementById('not-sure-yet').innerHTML = i;
+      document.getElementById('count-box').innerHTML = i;
     }, 1000);
   }
   // collectData();
@@ -14,5 +14,5 @@ io.on('countdown', function(data) {
 });
 
 function collectData() {
-  
+
 }
