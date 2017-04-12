@@ -6,7 +6,7 @@ var Game = require('./games/RPS')
 var port = process.env.PORT || 3000;
 
 //server.listen(3000);
-server.listen(port, function{
+server.listen(port, function(){
   console.log('listening on *:'+ port);
 });
 
